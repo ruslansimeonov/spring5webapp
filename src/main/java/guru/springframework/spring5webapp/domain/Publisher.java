@@ -2,6 +2,7 @@ package guru.springframework.spring5webapp.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -76,7 +77,7 @@ public class Publisher {
 
         Publisher publisher = (Publisher) o;
 
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
+        return Objects.equals(id, publisher.id);
     }
 
     @Override
