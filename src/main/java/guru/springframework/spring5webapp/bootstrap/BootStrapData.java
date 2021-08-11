@@ -16,8 +16,7 @@ public class BootStrapData implements CommandLineRunner {
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
 
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository,
-                         PublisherRepository publisherRepository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
@@ -28,39 +27,38 @@ public class BootStrapData implements CommandLineRunner {
 
         System.out.println("Started in Bootstrap");
 
+        Publisher publisher = new Publisher();
+        publisher.setPublisherAddress("Eindhoven, 5623KX");
+
+        publisherRepository.save(publisher);
+
+        System.out.println("Publisher Count: " + publisherRepository.count());
+
         Author eric = new Author("Eric", "Evans");
-        Book ddd = new Book("Domain Driven Design", "1234567890");
+        Book ddd = new Book("Domain Driven Design", "123123");
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
 
+        ddd.setPublisher(publisher);
+        publisher.getBooks().add(ddd);
+
         authorRepository.save(eric);
         bookRepository.save(ddd);
+        publisherRepository.save(publisher);
 
         Author rod = new Author("Rod", "Johnson");
-        Book noEJB = new Book("J2EE Development without EJB", "1324567898");
-
+        Book noEJB = new Book("J2EE Development without EJB", "3939459459");
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
 
-
+        noEJB.setPublisher(publisher);
+        publisher.getBooks().add(noEJB);
 
         authorRepository.save(rod);
         bookRepository.save(noEJB);
+        publisherRepository.save(publisher);
 
-        Publisher disney = new Publisher("Disney", "Eindhoven");
-        publisherRepository.save(disney);
-
-        ddd.setPublisher(disney);
-        disney.getBooks().add(ddd);
-        publisherRepository.save(disney);
-
-        noEJB.setPublisher(disney);
-        disney.getBooks().add(noEJB);
-        publisherRepository.save(disney);
-
-        System.out.println("Started in Bootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
-        System.out.println("Number of Publishers " + publisherRepository.count());
-        System.out.println("Number of books assigned to a publisher " + disney.getBooks().size());
+        System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
     }
 }

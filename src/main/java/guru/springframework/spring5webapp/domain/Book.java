@@ -13,7 +13,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    private String ibsn;
+    private String isbn;
 
     @ManyToOne
     private Publisher publisher;
@@ -26,9 +26,9 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String ibsn) {
+    public Book(String title, String isbn) {
         this.title = title;
-        this.ibsn = ibsn;
+        this.isbn = isbn;
     }
 
     public Publisher getPublisher() {
@@ -55,12 +55,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getIbsn() {
-        return ibsn;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setIbsn(String ibsn) {
-        this.ibsn = ibsn;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public Set<Author> getAuthors() {
@@ -76,7 +76,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", ibsn='" + ibsn + '\'' +
+                ", isbn='" + isbn + '\'' +
                 '}';
     }
 
