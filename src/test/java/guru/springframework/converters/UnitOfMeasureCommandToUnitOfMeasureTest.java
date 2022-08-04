@@ -21,14 +21,12 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest {
     }
 
     @Test
-    public void testNullParamter()
-    {
+    public void testNullParamter() throws Exception {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject()
-    {
+    public void testEmptyObject() throws Exception {
         assertNotNull(converter.convert(new UnitOfMeasureCommand()));
     }
 
